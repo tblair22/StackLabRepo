@@ -4,15 +4,15 @@ Trent Blair
 The Stack class is makes a stack of nodes but the user can only access the top node
  */
 public class Stack <T>{
-    private StackNodeClass<T> ancestorNode;
+    private StackNodeClass<T> oldNode;
     private int size;
     public Stack(){
         size = 0;
-        ancestorNode = new StackNodeClass<T>();
+        oldNode = new StackNodeClass<T>();
     }
     public void push(T data){
-        StackNodeClass currNode = ancestorNode;
-        for(int i = 0; i < size; i++){
+        StackNodeClass currNode = oldNode;
+        for(int i = 1; i < size; i++){
             currNode = currNode.getSecondNode();
         }
         StackNodeClass<T> newNode = new StackNodeClass<T>(data);//new node with data
@@ -20,7 +20,7 @@ public class Stack <T>{
         size++;
     }
     public StackNodeClass pop(){//moves to last node
-        StackNodeClass currNode = ancestorNode;
+        StackNodeClass currNode = oldNode;
         for(int i = 0; i < size; i++){
             currNode = currNode.getSecondNode();
         }
@@ -30,8 +30,8 @@ public class Stack <T>{
         return (StackNodeClass)currNode;
     }
     public StackNodeClass peek(){//moves to the last node
-        StackNodeClass currNode = ancestorNode;
-        for(int i = 0; i < size; i++){
+        StackNodeClass currNode = oldNode;
+        for(int i = 1; i < size; i++){
             currNode = currNode.getSecondNode();
         }
         return currNode;//returns to the top node
